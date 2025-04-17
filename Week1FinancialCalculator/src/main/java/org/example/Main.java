@@ -18,16 +18,18 @@ public class Main {
         double loanLength = scanner.nextDouble();
         double month = loanLength * 12;
         scanner.nextLine();
-        double monthlyInterest = (interestRate/12)/100;
+        // Convert annual interest rate to monthly and make it a decimal
+        double monthlyInterest = (interestRate / 12) / 100;
 
-            // 1+r
+        // 1+r
         double v = 1 + monthlyInterest;
-        double n = Math.pow(v,month);
-        double left = principle*(monthlyInterest*n);
+        double n = Math.pow(v, month);
+        double left = principle * (monthlyInterest * n);
         double right = n - 1;
-        double monthlyPayment = left/right;
+        double monthlyPayment = left / right;
 
-        double totalInterest = (monthlyPayment*month) - principle;
-        System.out.printf("Your monthly rate due is $%.2f and your monthly payment is $%.2f ", totalInterest, monthlyPayment);
-        }
+        double totalInterest = (monthlyPayment * month) - principle;
+        System.out.printf("Your monthly payment is: $%.2f%n", monthlyPayment);
+        System.out.printf("Total interest over the life of the loan: $%.2f%n", totalInterest);
     }
+}
