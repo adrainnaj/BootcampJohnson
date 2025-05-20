@@ -11,7 +11,7 @@ public class Reports {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
-            System.out.println("\nReports Menu:");
+            System.out.println("\nReports Menu:\n");
             System.out.println("A) Search Vendor");
             System.out.println("B) Month to Date");
             System.out.println("C) Back to Ledger Screen");

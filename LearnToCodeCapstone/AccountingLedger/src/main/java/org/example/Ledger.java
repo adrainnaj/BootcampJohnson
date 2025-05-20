@@ -9,7 +9,7 @@ public class Ledger {
         boolean inLedger = true;
 
         while (inLedger) {
-            System.out.println("Ledger Screen");
+            System.out.println("\nLedger Screen\n");
             System.out.println("A) Show All Entries");
             System.out.println("B) Show Deposits");
             System.out.println("C) Show Payments");
@@ -38,7 +38,7 @@ public class Ledger {
         }
     }
     public static void showAll() {
-            System.out.println("\n Show all transaction ");
+            System.out.println("\n All transaction ");
             List<Transaction>transactions = TransactionFileManager.readFile();
             for (Transaction transaction : transactions) {
                 System.out.println(transaction.toString());
@@ -46,17 +46,17 @@ public class Ledger {
         }
 
     public static void showDeposits(){
-        System.out.println("Show Deposits");
+        System.out.println("\nAll Deposits");
         List<Transaction>transactions = TransactionFileManager.readFile();
         for(Transaction transaction : transactions){
-            if(transaction.getAmount()>0){
+            if(transaction.getAmount()>0)
                 System.out.println(transaction.toString());
             }
         }
     }
 
     public static void showPayments(){
-        System.out.println("Show Payments");
+        System.out.println("\n  Show Payments");
         List<Transaction>transactions = TransactionFileManager.readFile();
 
         for(Transaction transaction : transactions){
