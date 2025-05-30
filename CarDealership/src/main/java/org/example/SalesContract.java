@@ -8,57 +8,74 @@ public class SalesContract extends Contract {
     private static final double PROCESSING_FEE_OVER_1000 = 495.0;
 
     private boolean isFinance;
+    private double processingFee;
 
     public SalesContract(String date, String customerName, String customerEmail,
-                         Vehicle vehicleSold, boolean toFinance) {
+                         Vehicle vehicleSold, boolean isFinance, double processingFee) {
         super(date, customerName, customerEmail, vehicleSold);
-        this.isFinance = toFinance;
+        this.isFinance = isFinance;
+        this.processingFee = processingFee;
     }
 
-    public boolean isFinance() {
+    public boolean getIsFinance() {
         return isFinance;
     }
 
-    public void setFinance(boolean toFinance) {
-        this.isFinance = toFinance;
+    public void setFinance(boolean isFinance) {
+        this.isFinance = isFinance;
+    }
+
+    public double getProcessingFee(double vehiclePrice) {
+        if(vehiclePrice < 10000){
+            return PROCESSING_FEE_UNDER_1000;
+        }
+        else{
+            return PROCESSING_FEE_OVER_1000;
+        }
+    }
+
+    public void setProcessingFee(double processingFee) {
+        this.processingFee = processingFee;
     }
 
     @Override
     public double getTotalPrice() {
+        double vehiclePrice = getVehicleSold().getPrice(); // manufacturer price
+        double salesTax = vehiclePrice * SALES_TAX_RATE; // sales tax amount
+        //double recordingFee = RECORDING_FEE; // recording fee
+        //double processingFee; //
 
-        double vehiclePrice = getVehicleSold().getPrice();
-        double salesTax = vehiclePrice * SALES_TAX_RATE;
-        double recordingFee = RECORDING_FEE;
-        double processingFee;
-
-        if(vehiclePrice < 10000){
-            processingFee = PROCESSING_FEE_UNDER_1000;
-        }
-        else{
-            processingFee = PROCESSING_FEE_OVER_1000;
-        }
-        return vehiclePrice + salesTax + RECORDING_FEE + processingFee;
+        return vehiclePrice + salesTax + RECORDING_FEE + getProcessingFee(vehiclePrice);
     }
+
     @Override
     public double getMonthlyPayment(){
+        // not financed => paid in full, no monthly
         if (!isFinance){
             return  0.0;
         }
+
+        // isFinanced - two possibilities
+
+
+
         double totalPrice = getTotalPrice();
         double interest;
         int loanMonths;
 
+        // (1) 4.25% over 48 months IF price >= 10000
         if (totalPrice >= 10000){
             interest = 0.0425;
             loanMonths = 48;
         }
         else {
+            // (2) 5.25% over 24 months IF price < 10000
             interest = 0.0525;
             loanMonths = 24;
         }
-        double totalInterest = totalPrice * interest *((double)loanMonths / 12);
-        double totalAmount = totalPrice + totalInterest;
 
-        return totalAmount/loanMonths;
+        // to get the monthly payment, (total price * (1 + interest))/loanMonths
+            return (totalPrice * (1 + interest))/loanMonths;
+
     }
 }

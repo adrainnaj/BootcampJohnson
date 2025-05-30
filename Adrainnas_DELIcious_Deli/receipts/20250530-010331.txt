@@ -1,0 +1,7 @@
+RECEIPT
+--------
+Customer Name: null
+Date: 2025-05-30T01:03:31.311389300
+---------
+[Chips - $1.50 1.5, Chips - $1.50 1.5][Chips - $1.50 1.5, Chips - $1.50 1.5]--------
+Total: $3.00

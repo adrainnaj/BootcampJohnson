@@ -1,0 +1,29 @@
+RECEIPT
+
+--------
+[small sandwich on rye
+Toasted! 
+Meat: ham,Extra : ham,chicken,
+Cheese: american Extra : american 
+Toppings: mushrooms 
+Sauces: mayo 
+Total : $9.05
+, large Cola  $ 3.00
+, Chips - $1.50][small sandwich on rye
+Toasted! 
+Meat: ham,Extra : ham,chicken,
+Cheese: american Extra : american 
+Toppings: mushrooms 
+Sauces: mayo 
+Total : $9.05
+, large Cola  $ 3.00
+, Chips - $1.50][small sandwich on rye
+Toasted! 
+Meat: ham,Extra : ham,chicken,
+Cheese: american Extra : american 
+Toppings: mushrooms 
+Sauces: mayo 
+Total : $9.05
+, large Cola  $ 3.00
+, Chips - $1.50]--------
+Total: $13.55
