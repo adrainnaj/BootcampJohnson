@@ -105,7 +105,6 @@ public class SandwichBuilder {
                     cheeseType = cType;
                     break;
                 }
-
             }
 
             sandwich.addCheese(new Cheese(cheeseType, false));

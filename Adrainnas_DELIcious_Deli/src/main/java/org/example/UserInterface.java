@@ -19,7 +19,9 @@ public class UserInterface {
         boolean isRunnning = true;
 
         while (isRunnning) {
-            System.out.println("Welcome to Adrainna's DELI-cious Delight!");
+            System.out.println(" ");
+            System.out.println("-------Welcome to Adrainna's DELI-cious Delight!------");
+            System.out.println(" ");
             System.out.println("S) Start a new order");
             System.out.println("X) Exit App");
 
@@ -51,7 +53,7 @@ public class UserInterface {
 
 
         while (ordering) {
-            System.out.println("What would you like to do ?");
+            System.out.println("What would you like to do ?\n");
             System.out.println("1) Add a sandwich");
             System.out.println("2) Add a drink");
             System.out.println("3) Add chips");
@@ -115,7 +117,7 @@ public class UserInterface {
         if (orderChips.equalsIgnoreCase("yes")){
             Chips chips = new Chips(orderChips);
 //            currentOrder.addItemToOrder(chips);
-            System.out.println("Chips added to order\n");
+            System.out.println("Chips added to order. Don't forget to grab them! \n");
             return chips;
         }
         else {
