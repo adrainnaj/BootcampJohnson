@@ -18,4 +18,5 @@ public interface ProductDao
     boolean create(Product product);
     boolean update(int productId, Product product);
     boolean delete(int productId);
+    List<Product> getAllProducts();
 }

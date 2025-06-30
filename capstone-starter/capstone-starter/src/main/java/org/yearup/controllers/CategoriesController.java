@@ -41,14 +41,14 @@ public class CategoriesController
     public ResponseEntity<List<Category>> getAll()
     {
         // find and return all categories
-        var categories = categoryDao.getAllCategories();
+        List<Category> categories = categoryDao.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     // add the appropriate annotation for a get action
-    @GetMapping("/{category_id}")
+    @GetMapping("/{id}")
         // get the category by id
-        public ResponseEntity<Category> getById(@PathVariable("category_id") int id){
+        public ResponseEntity<Category> getById(@PathVariable int id){
         Category category = categoryDao.getById(id);
 
         if(category == null){
@@ -63,15 +63,10 @@ public class CategoriesController
     // https://localhost:8080/categories/1/products
     @GetMapping("{categoryId}/products")
     // get a list of product by categoryId
-    public ResponseEntity<List<Product>> getProductsById(@PathVariable int categoryId) {
-        List<Product> product = productDao.listByCategoryId(categoryId);
+    public ResponseEntity<List<Product>> getProductsByCategoryId(@PathVariable int categoryId) {
 
-        if(product == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        else {
-            return new ResponseEntity<>(product, HttpStatus.OK);
-        }
+        List<Product> product = productDao.listByCategoryId(categoryId);
+        return new ResponseEntity<>(product, HttpStatus.OK);
     }
 
     // add annotation to call this method for a POST action
@@ -79,7 +74,7 @@ public class CategoriesController
     // CREATE
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
-    public ResponseEntity<Category> addCategory(@Valid @RequestBody Category category){
+    public ResponseEntity<Category> addCategory( @RequestBody Category category){
         boolean created = categoryDao.create(category);
 
         if(created){
@@ -93,7 +88,7 @@ public class CategoriesController
     // add annotation to call this method for a PUT (update) action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
     // UPDATE
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping ("/{category_id}")
     public ResponseEntity<Void> updateCategory(@PathVariable("category_id") int id, @RequestBody Category category) {
         Category existing = categoryDao.getById(id);
@@ -116,7 +111,7 @@ public class CategoriesController
     // add annotation to call this method for a DELETE action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
     // delete the category by id
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{category_id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable("category_id") int id)
     {
